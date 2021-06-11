@@ -4,10 +4,10 @@ import (
 	"io/ioutil"
 	"os"
 
-	"plunder-app/plunder/apiserver"
-	"plunder-app/plunder/parlay"
-	"plunder-app/plunder/services"
-	"plunder-app/plunder/utils"
+	"plunder-app/plunder/pkg/apiserver"
+	"plunder-app/plunder/pkg/parlay"
+	"plunder-app/plunder/pkg/services"
+	"plunder-app/plunder/pkg/utils"
 
 	"github.com/spf13/cobra"
 

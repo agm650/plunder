@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"time"
 
-	"plunder-app/plunder/utils"
+	"plunder-app/plunder/pkg/utils"
 
 	log "github.com/sirupsen/logrus"
 

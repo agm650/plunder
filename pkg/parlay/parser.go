@@ -7,9 +7,9 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
-	"plunder-app/plunder/parlay/parlaytypes"
-	parlayplugin "plunder-app/plunder/parlay/plugin"
-	"plunder-app/plunder/ssh"
+	"plunder-app/plunder/pkg/parlay/parlaytypes"
+	parlayplugin "plunder-app/plunder/pkg/parlay/plugin"
+	"plunder-app/plunder/pkg/ssh"
 )
 
 // This logger will manage all of the logging for Parlay

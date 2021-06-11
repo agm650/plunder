@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"plunder-app/plunder/parlay/parlaytypes"
+	"plunder-app/plunder/pkg/parlay/parlaytypes"
 )
 
 func (e *etcdMembers) generateActions() []parlaytypes.Action {

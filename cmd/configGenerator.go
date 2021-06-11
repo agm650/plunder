@@ -8,11 +8,11 @@ import (
 	"strings"
 	"time"
 
-	"plunder-app/plunder/apiserver"
-	"plunder-app/plunder/certs"
-	"plunder-app/plunder/parlay/parlaytypes"
-	"plunder-app/plunder/services"
-	"plunder-app/plunder/utils"
+	"plunder-app/plunder/pkg/apiserver"
+	"plunder-app/plunder/pkg/certs"
+	"plunder-app/plunder/pkg/parlay/parlaytypes"
+	"plunder-app/plunder/pkg/services"
+	"plunder-app/plunder/pkg/utils"
 
 	"github.com/ghodss/yaml"
 	booty "github.com/plunder-app/BOOTy/pkg/plunderclient/types"

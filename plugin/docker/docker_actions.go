@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"path"
 
-	"plunder-app/plunder/parlay/parlaytypes"
+	"plunder-app/plunder/pkg/parlay/parlaytypes"
 )
 
 func (i *image) generateImageActions(host string) []parlaytypes.Action {

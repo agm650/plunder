@@ -6,10 +6,10 @@ import (
 	"net/http"
 	"strings"
 
-	"plunder-app/plunder/apiserver"
-	"plunder-app/plunder/parlay/parlaytypes"
-	"plunder-app/plunder/services"
-	"plunder-app/plunder/ssh"
+	"plunder-app/plunder/pkg/apiserver"
+	"plunder-app/plunder/pkg/parlay/parlaytypes"
+	"plunder-app/plunder/pkg/services"
+	"plunder-app/plunder/pkg/ssh"
 
 	"github.com/gorilla/mux"
 	log "github.com/sirupsen/logrus"

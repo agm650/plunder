@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"strings"
 
-	"plunder-app/plunder/apiserver"
+	"plunder-app/plunder/pkg/apiserver"
 
 	"github.com/gorilla/mux"
 )

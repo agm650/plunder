@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"plunder-app/plunder/utils"
+	"plunder-app/plunder/pkg/utils"
 
 	log "github.com/sirupsen/logrus"
 )

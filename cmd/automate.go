@@ -8,10 +8,10 @@ import (
 	"net/url"
 	"os"
 
-	"plunder-app/plunder/parlay"
-	"plunder-app/plunder/parlay/parlaytypes"
-	parlayplugin "plunder-app/plunder/parlay/plugin"
-	"plunder-app/plunder/ssh"
+	"plunder-app/plunder/pkg/parlay"
+	"plunder-app/plunder/pkg/parlay/parlaytypes"
+	parlayplugin "plunder-app/plunder/pkg/parlay/plugin"
+	"plunder-app/plunder/pkg/ssh"
 
 	"github.com/ghodss/yaml"
 	log "github.com/sirupsen/logrus"

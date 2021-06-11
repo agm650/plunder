@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"plunder-app/plunder/parlay/parlaytypes"
+	"plunder-app/plunder/pkg/parlay/parlaytypes"
 )
 
 const pluginInfo = `This plugin is used to managed docker automation`

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"plunder-app/plunder/parlay/parlaytypes"
+	"plunder-app/plunder/pkg/parlay/parlaytypes"
 
 	"github.com/AlecAivazis/survey/v2"
 )
