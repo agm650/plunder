@@ -15,7 +15,7 @@ type BootController struct {
 	EnableTFTP  *bool   `json:"enableTFTP"`  // Enable Server
 	TFTPAddress *string `json:"addressTFTP"` // Should ideally be the IP of the adapter
 	EnableHTTP  *bool   `json:"enableHTTP"`  // Enable Server
-	HTTPAddress *string `json:"addressHTTP"` // Should ideally be the IP of the adapter
+	HttpAddress *string `json:"addressHTTP"` // Should ideally be the IP of the adapter
 
 	// TFTP Configuration
 	PXEFileName *string `json:"pxePath"` // undionly.kpxe

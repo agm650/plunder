@@ -14,7 +14,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/plunder-app/plunder/pkg/utils"
+	"plunder-app/plunder/utils"
 )
 
 // Internal variables to hold the outputs

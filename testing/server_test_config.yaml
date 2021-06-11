@@ -1,0 +1,21 @@
+adapter: en0
+addressHTTP: 192.168.1.16
+addressTFTP: 192.168.1.16
+bootConfigs:
+- cmdline: cmd=options
+  configName: demo config
+  configType: default
+  initrdPath: /initPath
+  kernelPath: /kernelPath
+dhcpConfig:
+  addressDHCP: 192.168.1.16
+  gatewayDHCP: 192.168.1.16
+  leasePoolDHCP: 20
+  nameserverDHCP: 192.168.1.16
+  startDHCP: 192.168.1.17
+  subnetDHCP: 255.255.255.0
+enableDHCP: false
+enableHTTP: false
+enableTFTP: false
+pxePath: undionly.kpxe
+

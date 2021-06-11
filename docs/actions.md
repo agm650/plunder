@@ -1,6 +1,6 @@
 #  Actions
 
-When a deployment is executed against a host(s) typically one or more **actions** will be performed against that host in order to configure as expected. This document details the **built-in** actions, however to extend the functionality of [plunder](github.com/plunder-app/plunder) there is the capability to extend the available actions through the use of plugins. 
+When a deployment is executed against a host(s) typically one or more **actions** will be performed against that host in order to configure as expected. This document details the **built-in** actions, however to extend the functionality of [plunder](plunder-app/plunder) there is the capability to extend the available actions through the use of plugins.
 
 
 
@@ -26,7 +26,7 @@ Example in json and yaml below:
 
 ### Command
 
-The **command** action type is used to execute a command either locally or remote, it will exit execution if the command fails (or it can be ignored) and the results can be stored to be executed at a later point. 
+The **command** action type is used to execute a command either locally or remote, it will exit execution if the command fails (or it can be ignored) and the results can be stored to be executed at a later point.
 
 Set the `ignoreFail` to `true` to allow execution of tasks to continue in the event that the command fails. If a long running task should be known to only execute for a specific amount of time, commands can be given a timeout which will end the command should it not complete in time. The `timeout` setting should be set in seconds which will specify how long the task is allowed to execute for.
 
@@ -39,7 +39,7 @@ Set the `ignoreFail` to `true` to allow execution of tasks to continue in the ev
 
  *The above example will execute a sleep for a hundred seconds, however the command has a timeout set for only 99 seconds. Execution will be halted once the timeout is met, and if the task returns a fail code the execution will continue onto the next action*
 
-If a command requires elevated privileges, the `commandSudo` option allows executing a command as different user, with it's entitled privileges. 
+If a command requires elevated privileges, the `commandSudo` option allows executing a command as different user, with it's entitled privileges.
 
 **Note**: This requires `NOPASSWD` to be set for the current user.
 
@@ -56,7 +56,7 @@ If a command requires elevated privileges, the `commandSudo` option allows execu
 
 There may be a requirment to save the output of a command to be used in a different action or a different deployment, some commands will generate tokens or output that can be used at a later point.
 
-There are two options to save the output of a command: 
+There are two options to save the output of a command:
 
 - `commandSaveFile` - saves the command output to a path
 - `commandSaveAsKey` - Saves the ouput in-memory under a specified `key`
@@ -67,7 +67,7 @@ These saved ouputs can then be used later through the use of the `key` options:
 
 - `KeyName` - executes the commands saved in-memory under the specified `key`
 
-  
+
 
 The below example will create a command Key under the name `joinKey` (JSON format) :
 
@@ -76,7 +76,7 @@ The below example will create a command Key under the name `joinKey` (JSON forma
   "name" : "Generate a join token",
   "type" : "command",
   "command" : "kubeadm token create --print-join-command 2>/dev/null",
-  "commandSaveAsKey" : "joinKey" 
+  "commandSaveAsKey" : "joinKey"
 }
 ```
 
@@ -110,7 +110,7 @@ The below example will run the command `echo "deb https://apt.kubernetes.io/ kub
 
 ```
 
-This is useful for a variety of usecases, although it has been found very useful for appending data to existing files that require elevated privilieges. 
+This is useful for a variety of usecases, although it has been found very useful for appending data to existing files that require elevated privilieges.
 
 **Example reasons for piping data to a command**
 

@@ -1,0 +1,33 @@
+deployments:
+- bootConfig:
+    cmdline: ""
+    configName: ""
+    configType: ""
+    initrdPath: ""
+    kernelPath: ""
+  config:
+    address: 192.168.0.2
+    hostname: Server01
+  mac: "00:11:22:33:44:55"
+globalConfig:
+  adapter: ens192
+  bootyAction: readImage
+  compressed: false
+  destinationAddress: http://192.168.0.1/image
+  destinationDevice: /dev/sda
+  gateway: 192.168.0.1
+  growPartition: 1
+  lvmRootName: /dev/ubuntu-vg/root
+  mirrordir: /ubuntu
+  nameserver: 192.168.0.1
+  ntpserver: 192.168.0.1
+  packages: openssh-server cloud-guest-utils
+  password: pass
+  repoaddress: 192.168.0.1
+  sourceDevice: /dev/sda
+  sourceImage: http://192.168.0.1/images/ubuntu.img
+  sshkey: ssh-rsa AABBCCDDEE1122334455
+  sshkeypath: /home/deploy/.ssh/id_pub.rsa
+  subnet: 255.255.255.0
+  username: user
+

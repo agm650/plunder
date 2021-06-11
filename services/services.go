@@ -4,11 +4,12 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/plunder-app/plunder/pkg/utils"
+	"plunder-app/plunder/utils"
+
 	log "github.com/sirupsen/logrus"
 
 	dhcp "github.com/krolaw/dhcp4"
-	"github.com/krolaw/dhcp4/conn"
+	dhcp_con "github.com/krolaw/dhcp4/conn"
 )
 
 var dhcpServer = make(chan bool)
@@ -122,7 +123,7 @@ func (c *BootController) StartServices(deployment []byte) error {
 		log.Println("Plunder Services --> Starting DHCP")
 
 		if runningDHCP == false {
-			newConnection, err := conn.NewUDP4FilterListener(*c.AdapterName, ":67")
+			newConnection, err := dhcp_con.NewUDP4FilterListener(*c.AdapterName, ":67")
 			if err != nil {
 				log.Fatalf("%v", err)
 			}
@@ -170,7 +171,7 @@ func (c *BootController) StartServices(deployment []byte) error {
 			log.Warn("No Boot settings specified in configuration")
 		}
 
-		httpAddress = *c.HTTPAddress
+		HttpAddress = *c.HttpAddress
 
 		go func() {
 			log.Println("Plunder Services --> Starting HTTP")
@@ -181,7 +182,7 @@ func (c *BootController) StartServices(deployment []byte) error {
 		}()
 
 		// Use of a Mux allows the redefinition of http paths
-		serveMux = http.NewServeMux()
+		ServeMux = http.NewServeMux()
 
 		// Parse the boot controller configuration
 		// err := c.ParseBootController()

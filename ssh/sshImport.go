@@ -9,8 +9,9 @@ import (
 	"strings"
 	"time"
 
+	"plunder-app/plunder/services"
+
 	"github.com/mitchellh/go-homedir"
-	"github.com/plunder-app/plunder/pkg/services"
 	"golang.org/x/crypto/ssh"
 
 	log "github.com/sirupsen/logrus"

@@ -5,7 +5,7 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/plunder-app/plunder/pkg/utils"
+	"plunder-app/plunder/utils"
 
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"

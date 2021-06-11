@@ -6,8 +6,9 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/plunder-app/plunder/pkg/parlay/parlaytypes"
-	"github.com/plunder-app/plunder/pkg/ssh"
+	"plunder-app/plunder/parlay/parlaytypes"
+	"plunder-app/plunder/ssh"
+
 	log "github.com/sirupsen/logrus"
 )
 

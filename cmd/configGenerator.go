@@ -8,13 +8,14 @@ import (
 	"strings"
 	"time"
 
+	"plunder-app/plunder/apiserver"
+	"plunder-app/plunder/certs"
+	"plunder-app/plunder/parlay/parlaytypes"
+	"plunder-app/plunder/services"
+	"plunder-app/plunder/utils"
+
 	"github.com/ghodss/yaml"
 	booty "github.com/plunder-app/BOOTy/pkg/plunderclient/types"
-	"github.com/plunder-app/plunder/pkg/apiserver"
-	"github.com/plunder-app/plunder/pkg/certs"
-	"github.com/plunder-app/plunder/pkg/parlay/parlaytypes"
-	"github.com/plunder-app/plunder/pkg/services"
-	"github.com/plunder-app/plunder/pkg/utils"
 
 	log "github.com/sirupsen/logrus"
 
@@ -327,7 +328,7 @@ func detectServerConfig() error {
 
 	// Prepopulate the flags with the found nic information
 	services.Controller.AdapterName = &nicName
-	services.Controller.HTTPAddress = &nicAddr
+	services.Controller.HttpAddress = &nicAddr
 	services.Controller.TFTPAddress = &nicAddr
 
 	*services.Controller.PXEFileName = "undionly.kpxe"

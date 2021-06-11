@@ -5,7 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/plunder-app/plunder/pkg/utils"
+	"plunder-app/plunder/utils"
+
 	log "github.com/sirupsen/logrus"
 )
 
@@ -24,7 +25,7 @@ func init() {
 func rebuildConfiguration(updateConfig *DeploymentConfigurationFile) error {
 
 	// If HTTP isn't enabled we can't build the multiplexer for URLs
-	if serveMux == nil {
+	if ServeMux == nil {
 		return fmt.Errorf("Deployment HTTP Server isn't enabled, so parsing deployments isn't possible")
 	}
 
@@ -83,29 +84,29 @@ func rebuildConfiguration(updateConfig *DeploymentConfigurationFile) error {
 		// Look for understood config types
 		switch updateConfig.Configs[i].ConfigBoot.ConfigType {
 		case "preseed":
-			inMemipxeConfig = utils.IPXEPreeseed(httpAddress, bootConfig.Kernel, bootConfig.Initrd, bootConfig.Cmdline)
+			inMemipxeConfig = utils.IPXEPreeseed(HttpAddress, bootConfig.Kernel, bootConfig.Initrd, bootConfig.Cmdline)
 			log.Debugf("Generating preseed ipxeConfig for configName [%s]", dashMac)
 			inMemBootConfig = updateConfig.Configs[i].ConfigHost.BuildPreeSeedConfig()
 
 		case "kickstart":
-			inMemipxeConfig = utils.IPXEKickstart(httpAddress, bootConfig.Kernel, bootConfig.Initrd, bootConfig.Cmdline)
+			inMemipxeConfig = utils.IPXEKickstart(HttpAddress, bootConfig.Kernel, bootConfig.Initrd, bootConfig.Cmdline)
 			log.Debugf("Generating kickstart ipxeConfig for configName [%s]", dashMac)
 			inMemBootConfig = updateConfig.Configs[i].ConfigHost.BuildKickStartConfig()
 
 		case "vsphere":
-			inMemipxeConfig = utils.IPXEVSphere(httpAddress, bootConfig.Kernel, bootConfig.Cmdline)
+			inMemipxeConfig = utils.IPXEVSphere(HttpAddress, bootConfig.Kernel, bootConfig.Cmdline)
 			log.Debugf("Generating vsphere ipxeConfig for configName [%s]", dashMac)
 			inMemBootConfig = updateConfig.Configs[i].ConfigHost.BuildESXiConfig()
 			imMemESXiKickstart = updateConfig.Configs[i].ConfigHost.BuildESXiKickStart()
 
 		case "booty":
-			inMemipxeConfig = utils.IPXEBOOTy(httpAddress, bootConfig.Kernel, bootConfig.Initrd, bootConfig.Cmdline)
+			inMemipxeConfig = utils.IPXEBOOTy(HttpAddress, bootConfig.Kernel, bootConfig.Initrd, bootConfig.Cmdline)
 			log.Debugf("Generating booty ipxeConfig for configName [%s]", dashMac)
 			inMemBOOTyConfig = updateConfig.Configs[i].ConfigHost.BuildBOOTYconfig()
 
 		default:
 			log.Debugf("Generating default ipxeConfig for configName [%s]", updateConfig.Configs[i].ConfigBoot.ConfigName)
-			inMemipxeConfig = utils.IPXEAnyBoot(httpAddress, bootConfig.Kernel, bootConfig.Initrd, bootConfig.Cmdline)
+			inMemipxeConfig = utils.IPXEAnyBoot(HttpAddress, bootConfig.Kernel, bootConfig.Initrd, bootConfig.Cmdline)
 		}
 
 		// Build the configuration that is passed to iPXE on boot
@@ -113,7 +114,7 @@ func rebuildConfiguration(updateConfig *DeploymentConfigurationFile) error {
 			path := fmt.Sprintf("/%s.ipxe", dashMac)
 			if _, ok := httpPaths[path]; !ok {
 				// Only create the handler if one doesn't exist
-				serveMux.HandleFunc(path, rootHandler)
+				ServeMux.HandleFunc(path, rootHandler)
 			}
 
 			httpPaths[path] = inMemipxeConfig
@@ -124,7 +125,7 @@ func rebuildConfiguration(updateConfig *DeploymentConfigurationFile) error {
 			path := fmt.Sprintf("/%s.cfg", dashMac)
 			if _, ok := httpPaths[path]; !ok {
 				// Only create the handler if one doesn't exist
-				serveMux.HandleFunc(path, rootHandler)
+				ServeMux.HandleFunc(path, rootHandler)
 			}
 			httpPaths[path] = inMemBootConfig
 		}
@@ -134,7 +135,7 @@ func rebuildConfiguration(updateConfig *DeploymentConfigurationFile) error {
 			path := fmt.Sprintf("/%s.ks", dashMac)
 			if _, ok := httpPaths[path]; !ok {
 				// Only create the handler if one doesn't exist
-				serveMux.HandleFunc(path, rootHandler)
+				ServeMux.HandleFunc(path, rootHandler)
 			}
 			httpPaths[path] = imMemESXiKickstart
 		}
@@ -144,7 +145,7 @@ func rebuildConfiguration(updateConfig *DeploymentConfigurationFile) error {
 			path := fmt.Sprintf("/%s.bty", dashMac)
 			if _, ok := httpPaths[path]; !ok {
 				// Only create the handler if one doesn't exist
-				serveMux.HandleFunc(path, rootHandler)
+				ServeMux.HandleFunc(path, rootHandler)
 			}
 			httpPaths[path] = inMemBOOTyConfig
 		}

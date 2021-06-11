@@ -108,10 +108,10 @@ then
       curl $INSECURE -X POST --data-binary "@./testing/deployment_config.yaml" $PLUNDERURL/deployments -H "Content-type: text/x-yaml"
       echo "Print (UPDATED) Deployment info"; echo "--------------------------"
       curl $INSECURE $PLUNDERURL/deployments; echo ""
-      sudo kill -9 $( ps -ef | grep -i plunder | grep -v -e 'sudo' -e 'grep' | awk '{ print $2 }')     
+      sudo kill -9 $( ps -ef | grep -i plunder | grep -v -e 'sudo' -e 'grep' | awk '{ print $2 }')
       wait $! 2>/dev/null
       sleep 1
-else 
+else
       echo "Skipping permission tests as running as root"
 fi
 

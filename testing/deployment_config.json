@@ -1,0 +1,40 @@
+{
+	"globalConfig": {
+		"adapter": "ens192",
+		"gateway": "192.168.0.1",
+		"subnet": "255.255.255.0",
+		"nameserver": "192.168.0.1",
+		"ntpserver": "192.168.0.1",
+		"username": "user",
+		"password": "pass",
+		"repoaddress": "192.168.0.1",
+		"mirrordir": "/ubuntu",
+		"sshkeypath": "/home/deploy/.ssh/id_pub.rsa",
+		"sshkey": "ssh-rsa AABBCCDDEE1122334455",
+		"packages": "openssh-server cloud-guest-utils",
+		"bootyAction": "readImage",
+		"compressed": false,
+		"sourceImage": "http://192.168.0.1/images/ubuntu.img",
+		"destinationDevice": "/dev/sda",
+		"sourceDevice": "/dev/sda",
+		"destinationAddress": "http://192.168.0.1/image",
+		"growPartition": 1,
+		"lvmRootName": "/dev/ubuntu-vg/root"
+	},
+	"deployments": [
+		{
+			"mac": "00:11:22:33:44:55",
+			"bootConfig": {
+				"configName": "",
+				"configType": "",
+				"kernelPath": "",
+				"initrdPath": "",
+				"cmdline": ""
+			},
+			"config": {
+				"address": "192.168.0.2",
+				"hostname": "Server01"
+			}
+		}
+	]
+}

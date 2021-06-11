@@ -1,0 +1,26 @@
+{
+	"adapter": "en0",
+	"enableDHCP": false,
+	"dhcpConfig": {
+		"addressDHCP": "192.168.1.16",
+		"startDHCP": "192.168.1.17",
+		"leasePoolDHCP": 20,
+		"subnetDHCP": "255.255.255.0",
+		"gatewayDHCP": "192.168.1.16",
+		"nameserverDHCP": "192.168.1.16"
+	},
+	"enableTFTP": false,
+	"addressTFTP": "192.168.1.16",
+	"enableHTTP": false,
+	"addressHTTP": "192.168.1.16",
+	"pxePath": "undionly.kpxe",
+	"bootConfigs": [
+		{
+			"configName": "demo config",
+			"configType": "default",
+			"kernelPath": "/kernelPath",
+			"initrdPath": "/initPath",
+			"cmdline": "cmd=options"
+		}
+	]
+}

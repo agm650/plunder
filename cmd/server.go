@@ -4,10 +4,11 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/plunder-app/plunder/pkg/apiserver"
-	"github.com/plunder-app/plunder/pkg/parlay"
-	"github.com/plunder-app/plunder/pkg/services"
-	"github.com/plunder-app/plunder/pkg/utils"
+	"plunder-app/plunder/apiserver"
+	"plunder-app/plunder/parlay"
+	"plunder-app/plunder/services"
+	"plunder-app/plunder/utils"
+
 	"github.com/spf13/cobra"
 
 	log "github.com/sirupsen/logrus"
@@ -27,7 +28,7 @@ func init() {
 	// Prepopulate the flags with the found nic information
 	services.Controller.AdapterName = PlunderServer.Flags().String("adapter", "", "Name of adapter to use e.g eth0, en0")
 
-	services.Controller.HTTPAddress = PlunderServer.Flags().String("addressHTTP", "", "Address of HTTP to use, if blank will default to [addressDHCP]")
+	services.Controller.HttpAddress = PlunderServer.Flags().String("addressHTTP", "", "Address of HTTP to use, if blank will default to [addressDHCP]")
 	services.Controller.TFTPAddress = PlunderServer.Flags().String("addressTFTP", "", "Address of TFTP to use, if blank will default to [addressDHCP]")
 
 	services.Controller.EnableDHCP = PlunderServer.Flags().Bool("enableDHCP", false, "Enable the DCHP Server")

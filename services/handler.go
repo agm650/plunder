@@ -7,8 +7,9 @@ import (
 	"net/http"
 	"strings"
 
+	"plunder-app/plunder/apiserver"
+
 	"github.com/gorilla/mux"
-	"github.com/plunder-app/plunder/pkg/apiserver"
 )
 
 // RegisterToAPIServer - will add the endpoints to the API server

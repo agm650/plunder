@@ -5,7 +5,8 @@ import (
 	"net/http"
 	"path/filepath"
 
-	"github.com/plunder-app/plunder/pkg/utils"
+	"plunder-app/plunder/utils"
+
 	log "github.com/sirupsen/logrus"
 )
 
@@ -15,7 +16,7 @@ var autoBoot, preseed, kickstart, defaultBoot, vsphere, reboot string
 // controller Pointer for the config API endpoint handler
 var controller *BootController
 
-var serveMux *http.ServeMux
+var ServeMux *http.ServeMux
 
 // TODO - this should be removed
 func (c *BootController) generateBootTypeHanders() {
@@ -23,7 +24,7 @@ func (c *BootController) generateBootTypeHanders() {
 	// Find the default configuration
 	defaultConfig := findBootConfigForType("default")
 	if defaultConfig != nil {
-		defaultBoot = utils.IPXEPreeseed(*c.HTTPAddress, defaultConfig.Kernel, defaultConfig.Initrd, defaultConfig.Cmdline)
+		defaultBoot = utils.IPXEPreeseed(*c.HttpAddress, defaultConfig.Kernel, defaultConfig.Initrd, defaultConfig.Cmdline)
 	} //else {
 	//	log.Warnf("Found [%d] configurations and no \"default\" configuration", len(c.BootConfigs))
 	//}
@@ -31,20 +32,20 @@ func (c *BootController) generateBootTypeHanders() {
 	// If a preeseed configuration has been configured then add it, and create a HTTP endpoint
 	preeseedConfig := findBootConfigForType("preseed")
 	if preeseedConfig != nil {
-		preseed = utils.IPXEPreeseed(*c.HTTPAddress, preeseedConfig.Kernel, preeseedConfig.Initrd, preeseedConfig.Cmdline)
+		preseed = utils.IPXEPreeseed(*c.HttpAddress, preeseedConfig.Kernel, preeseedConfig.Initrd, preeseedConfig.Cmdline)
 
 	}
 
 	// If a kickstart configuration has been configured then add it, and create a HTTP endpoint
 	kickstartConfig := findBootConfigForType("kickstart")
 	if kickstartConfig != nil {
-		kickstart = utils.IPXEPreeseed(*c.HTTPAddress, kickstartConfig.Kernel, kickstartConfig.Initrd, kickstartConfig.Cmdline)
+		kickstart = utils.IPXEPreeseed(*c.HttpAddress, kickstartConfig.Kernel, kickstartConfig.Initrd, kickstartConfig.Cmdline)
 	}
 
 	// If a vsphereConfig configuration has been configured then add it, and create a HTTP endpoint
 	vsphereConfig := findBootConfigForType("vsphere")
 	if vsphereConfig != nil {
-		vsphere = utils.IPXEVSphere(*c.HTTPAddress, vsphereConfig.Kernel, vsphereConfig.Cmdline)
+		vsphere = utils.IPXEVSphere(*c.HttpAddress, vsphereConfig.Kernel, vsphereConfig.Cmdline)
 	}
 }
 
@@ -64,21 +65,21 @@ func (c *BootController) serveHTTP() error {
 	// Created only once
 
 	// TOTO - alloew this to be customisable
-	serveMux.Handle("/", http.FileServer(http.Dir(docroot)))
+	ServeMux.Handle("/", http.FileServer(http.Dir(docroot)))
 
 	// Boot handlers
-	serveMux.HandleFunc("/health", HealthCheckHandler)
-	serveMux.HandleFunc("/reboot.ipxe", rebootHandler)
-	serveMux.HandleFunc("/autoBoot.ipxe", autoBootHandler)
-	serveMux.HandleFunc("/default.ipxe", rootHandler)
-	serveMux.HandleFunc("/kickstart.ipxe", kickstartHandler)
-	serveMux.HandleFunc("/preseed.ipxe", preseedHandler)
-	serveMux.HandleFunc("/vsphere.ipxe", vsphereHandler)
+	ServeMux.HandleFunc("/health", HealthCheckHandler)
+	ServeMux.HandleFunc("/reboot.ipxe", rebootHandler)
+	ServeMux.HandleFunc("/autoBoot.ipxe", autoBootHandler)
+	ServeMux.HandleFunc("/default.ipxe", rootHandler)
+	ServeMux.HandleFunc("/kickstart.ipxe", kickstartHandler)
+	ServeMux.HandleFunc("/preseed.ipxe", preseedHandler)
+	ServeMux.HandleFunc("/vsphere.ipxe", vsphereHandler)
 
 	// Set the pointer to the boot config
 	controller = c
 
-	return http.ListenAndServe(":80", serveMux)
+	return http.ListenAndServe(":80", ServeMux)
 }
 
 func rootHandler(w http.ResponseWriter, r *http.Request) {

@@ -3,7 +3,7 @@ package parlay
 import (
 	"fmt"
 
-	"github.com/plunder-app/plunder/pkg/parlay/parlaytypes"
+	"plunder-app/plunder/parlay/parlaytypes"
 )
 
 // ValidateAction will parse an action to ensure it is valid

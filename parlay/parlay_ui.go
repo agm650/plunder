@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"strings"
 
+	"plunder-app/plunder/parlay/parlaytypes"
+
 	"github.com/AlecAivazis/survey/v2"
-	"github.com/plunder-app/plunder/pkg/parlay/parlaytypes"
 )
 
 func contains(v string, a []string) bool {
