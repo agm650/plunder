@@ -62,7 +62,7 @@ func (b *BootConfig) Parse() error {
 		// Only create the handler if one doesn't exist
 		if _, ok := isoMapper[b.ISOPrefix]; !ok {
 			log.Debugf("Adding handler %s", urlPrefix)
-			ServeMux.HandleFunc(urlPrefix, isoReader)
+			serveMux.HandleFunc(urlPrefix, isoReader)
 
 			// Add the iso path to the correct prefix
 			isoMapper[b.ISOPrefix] = b.ISOPath
@@ -98,7 +98,7 @@ func (b *BootConfig) Parse() error {
 // 			if _, ok := isoMapper[c.BootConfigs[i].ISOPrefix]; !ok {
 // 				log.Debugf("Adding handler %s", urlPrefix)
 
-// 				ServeMux.HandleFunc(urlPrefix, isoReader)
+// 				serveMux.HandleFunc(urlPrefix, isoReader)
 // 			}
 
 // 			log.Debugf("Updating handler %s for config %s", urlPrefix, c.BootConfigs[i].ConfigName)
